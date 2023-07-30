@@ -50,8 +50,10 @@ let joinStream = async () => {
 
     channel.on("MemberJoined", handleMemberJoined);
     channel.on("MemberLeft", handleMemberLeft);
+    channel.on("ChannelMessage", handleChannelMessage);
 
     getMembers();
+    addBotMessageToDOM(`Welcome to the room ${displayName}! 👋`);
 
     localTracks = await AgoraRTC.createMicrophoneAndCameraTracks(
         {},

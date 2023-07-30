@@ -24,6 +24,8 @@ let addMemberToDOM = async (memberId) => {
 let updateMemberTotal = async (members) => {
     let total = document.getElementById("members__count");
     total.innerText = members.length;
+    let totalOnline = document.getElementById("rooms__count");
+    totalOnline.innerText = members.length;
 };
 
 let handleMemberLeft = async (memberId) => {
@@ -48,7 +50,7 @@ let getMembers = async () => {
     let members = await channel.getMembers();
     updateMemberTotal(members);
 
-    for (let i = 0; i < members.length; i++) {
+    for (let i = 0; members.length > i; i++) {
         addMemberToDOM(members[i]);
     }
 };
@@ -143,3 +145,5 @@ let leaveChannel = async () => {
 window.addEventListener("beforeunload", leaveChannel);
 let messageForm = document.getElementById("message__form");
 messageForm.addEventListener("submit", sendMessage);
+
+console.log(document.getElementById("rooms__count"));

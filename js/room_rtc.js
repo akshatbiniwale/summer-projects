@@ -32,6 +32,18 @@ let localScreenTracks;
 let sharingScreen = false;
 
 let joinRoomInit = async () => {
+    client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
+    await client.join(APP_ID, roomId, token, uid);
+
+    client.on("user-published", handleUserPublished);
+    client.on("user-left", handleUserLeft);
+};
+
+let joinStream = async () => {
+    document.getElementById("join-btn").style.display = "none";
+    document.getElementsByClassName("stream__actions")[0].style.display =
+        "flex";
+
     rtmClient = await AgoraRTM.createInstance(APP_ID);
     await rtmClient.login({ uid, token });
 
@@ -46,18 +58,6 @@ let joinRoomInit = async () => {
 
     getMembers();
     addBotMessageToDOM(`Welcome to the room ${displayName}! 👋`);
-
-    client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
-    await client.join(APP_ID, roomId, token, uid);
-
-    client.on("user-published", handleUserPublished);
-    client.on("user-left", handleUserLeft);
-};
-
-let joinStream = async () => {
-    document.getElementById("join-btn").style.display = "none";
-    document.getElementsByClassName("stream__actions")[0].style.display =
-        "flex";
 
     localTracks = await AgoraRTC.createMicrophoneAndCameraTracks(
         {},

@@ -1,5 +1,5 @@
-# bharat-intern-tasks
-Projects that were assigned to me for my internship as a full-stack web developer at Bharat Intern. The two branches contain the two different projects.
+# summer-projects
+These are the two project I took up during summer to improve my skills in web development.
 
 # blog-app: strings
 This blog website provides a user-friendly platform for verified users to create, publish, and manage their blogs through an intuitive admin dashboard. 

@@ -1,17 +1,17 @@
 import React from "react";
-import { images, stables } from "../../../constants";
+import { images, stables } from "../constants";
 import { BsCheckLg } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 const ArticleCard = ({ className, post }) => {
-    return (
+	return (
 		<div
 			className={`rounded-xl overflow-hidden shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] ${className}`}
 		>
 			<Link to={`/blog/${post.slug}`}>
 				<img
-                    src={
+					src={
 						post?.photo?.startsWith("data:image")
 							? post.photo
 							: images.noImage
